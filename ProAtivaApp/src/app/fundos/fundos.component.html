@@ -1,11 +1,41 @@
-
-
-<div *ngFor="let fundo of fundos">
-  Nome: {{fundo.nomeFundo}}
-  <br>
-  ID do fundo: {{fundo.fundoId}}
-  <br>
-  <hr>
-
-
+<div class = "form-inline">
+  <label class ="mr-2">Filtro: </label><div class="form-group mb-2">
+    <input type="text"
+    class="form-control mr-2"
+    placeholder="buscar"
+    [(ngModel)] = "filtroLista">
+  </div>
 </div>
+<h6>Filtro: {{filtroLista}}</h6>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Nome do Fundo</th>
+      <th>CNPJ do fundo</th>
+      <th>Investimento Inicial Mínimo</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="fundos && fundos.length">
+    <tr *ngFor="let fundo of fundosFiltrados">
+      <td>{{fundo.id}}</td>
+      <td>{{fundo.nomeFundo}}</td>
+      <td>{{fundo.cnpjFundo}}</td>
+      <td>R$ {{fundo.investimentoInicialMin}}</td>
+      <td>
+        <button class="btn btn-primary">Aplicação</button>
+        <button class="btn btn-info">Resgate</button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!fundos.length">
+    <tr>
+      <td colspan="5" class="text-center">
+        <h4>
+          Nenhum fundo encontrado!
+        </h4>
+      </td>
+    </tr>
+  </tfoot>
+</table>

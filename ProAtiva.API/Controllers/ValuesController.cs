@@ -23,7 +23,7 @@ namespace ProAtiva.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            try 
+            try
             {
                 var results = await _context.Fundos.ToListAsync();
                 return Ok(results);
@@ -33,7 +33,6 @@ namespace ProAtiva.API.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
 
             }
-            
         }
 
         // GET api/values/5

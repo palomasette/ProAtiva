@@ -8,12 +8,31 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FundosComponent implements OnInit {
 
-  fundos: any;
+  _filtroLista: string;
+  get filtroLista(){
+    return this._filtroLista;
+
+  }
+  set filtroLista(value: string){
+    this._filtroLista= value;
+    this.fundosFiltrados = this.filtroLista ? this.filtrarFundos(this.filtroLista) : this.fundos;
+  }
+
+  fundosFiltrados: any = [];
+  fundos: any = [];
+
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.getFundos();
+  }
+
+  filtrarFundos(filtrarPor: string): any {
+    filtrarPor = filtrarPor.toLocaleLowerCase();
+    return this.fundos.filter (
+      fundo => fundo.nomeFundo.toLocaleLowerCase().indexOf(filtrarPor)!= -1
+    );
   }
 
   getFundos() {
