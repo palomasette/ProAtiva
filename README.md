@@ -1,4 +1,4 @@
-# ProAtiva Fundos de Investimento
+# ProAtivaApp - Fundos de Investimento
 
 ## Execução da API:
 ```bash 
